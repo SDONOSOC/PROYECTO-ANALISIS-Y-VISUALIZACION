@@ -18,4 +18,10 @@ print(df_detalles_por_ejecutivo.columns)
 print(df_detalles_por_articulo.columns)
 
 #renombrar columnas
-df_detalles_por_ejecutivo=df_detalles_por_ejecutivo.rename({"Ver":"N Pedido","Proveedor":"Nombre del proveedor","Estado":"Estado Pedido","Total del pedido":"presupuesto pedido","requision":"ID Orden de Compra"})
+df_detalles_por_ejecutivo=df_detalles_por_ejecutivo.rename(columns={'Ver':'N Pedido','Proveedor':'Nombre del proveedor','Estado':'Estado Pedido','Total del pedido':'presupuesto pedido','requision':'ID Orden de Compra'})
+
+# Integración de tablas 
+df_integrados=pd.merge(df_detalles_por_articulo,df_detalles_por_ejecutivo,on='N Pedido',how='left')
+
+#guardar dataframe consolidado en un archivo csv
+df_integrados.to_csv('./df_datos_integrados.csv')
