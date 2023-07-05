@@ -16,3 +16,6 @@ print(df_detalles_por_ejecutivo.columns)
 
 #Listar el nombre de las columnas del dataset por articulos
 print(df_detalles_por_articulo.columns)
+
+#renombrar columnas
+df_detalles_por_ejecutivo=df_detalles_por_ejecutivo.rename({"Ver":"N Pedido","Proveedor":"Nombre del proveedor","Estado":"Estado Pedido","Total del pedido":"presupuesto pedido","requision":"ID Orden de Compra"})
