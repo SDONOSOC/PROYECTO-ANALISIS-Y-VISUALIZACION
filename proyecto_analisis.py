@@ -25,3 +25,10 @@ df_integrados=pd.merge(df_detalles_por_articulo,df_detalles_por_ejecutivo,on='N 
 
 #guardar dataframe consolidado en un archivo csv
 df_integrados.to_csv('./df_datos_integrados.csv')
+
+#eliminar columnas repetidas
+df_integrados.drop(['Nombre del proveedor_y', 'Fecha de pedido_y', 'presupuesto pedido_y', 'Estado Pedido_y'], axis=1)
+
+#revision de filas nulas en la columna iniciador
+contador_nulos = df_integrados.isnull().sum()
+print(contador_nulos)
