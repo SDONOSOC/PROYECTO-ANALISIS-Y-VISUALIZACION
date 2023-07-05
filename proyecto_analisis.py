@@ -27,8 +27,18 @@ df_integrados=pd.merge(df_detalles_por_articulo,df_detalles_por_ejecutivo,on='N 
 df_integrados.to_csv('./df_datos_integrados.csv')
 
 #eliminar columnas repetidas
-df_integrados.drop(['Nombre del proveedor_y', 'Fecha de pedido_y', 'presupuesto pedido_y', 'Estado Pedido_y'], axis=1)
+df_integrados.drop(['Nombre del proveedor_y', 'Fecha de pedido_y', 'presupuesto pedido_y', 'Estado Pedido_y'], axis = 'columns', inplace=True)
+print(df_integrados.columns)
 
 #revision de filas nulas en la columna iniciador
 contador_nulos = df_integrados.isnull().sum()
 print(contador_nulos)
+
+#eliminar filas con valores nulos (estas segun analisis estan cerradas)
+df_integrados.dropna( axis =0, inplace=True)
+#revision de filas nulas en la columna iniciador
+contador_nulos = df_integrados.isnull().sum()
+print(contador_nulos)
+
+#guardar dataframe consolidado y limpio en un archivo csv para analisis
+df_integrados.to_csv('./df_limpio_final.csv')
